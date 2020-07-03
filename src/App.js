@@ -1,18 +1,16 @@
 import React from "react";
-// import { Button } from "@material-ui/core";
 import "./App.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
+// import components
 import NavigationBar from "./components/Navigationbar";
+import MainGrid from "./components/MainGrid";
 
 function App() {
   return (
     <div>
       <NavigationBar></NavigationBar>
-      Hello from my app.
-      {/* <Button variant="contained" color="primary">
-        Primary
-      </Button> */}
+      <MainGrid></MainGrid>
     </div>
   );
 }
