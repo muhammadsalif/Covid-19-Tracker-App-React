@@ -4,7 +4,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import Button from "@material-ui/core/Button";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -80,7 +79,7 @@ export default function CountrySelect() {
           </MenuItem>
           {/* <MenuItem value={10}>Ten</MenuItem> */}
           {countries?.map((country, ind) => (
-            <MenuItem value={ind} key={ind + 1}>
+            <MenuItem value={country?.code} key={ind + 1}>
               {country?.title}
             </MenuItem>
           ))}

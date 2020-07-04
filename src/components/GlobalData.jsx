@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import CountUp from "react-countup";
+// import CountUp from "react-countup";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function GlobalData() {
   const classes = useStyles();
-  let [isData, setData] = useState(true);
+  // setData is not using that's why didn't declared here.
+  let [isData] = useState(true);
   let [globalData, setGlobalData] = useState(1000);
   let [isFetching, setFetching] = useState(false);
 
