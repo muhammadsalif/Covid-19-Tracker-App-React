@@ -30,9 +30,9 @@ export default function GlobalData() {
       const response = await fetch(
         "https://api.thevirustracker.com/free-api?global=stats"
       );
-      console.log("Your Response is :", response);
+      // console.log("Your Response is :", response);
       const responseJson = await response.json();
-      console.log("Your response JSON: ", responseJson);
+      // console.log("Your response JSON: ", responseJson);
 
       setGlobalData(responseJson);
       setFetching(false);
@@ -50,7 +50,7 @@ export default function GlobalData() {
       >
         <h2>Total Cases</h2>
         <h2>
-          <CountUp
+          {/* <CountUp
             start={0}
             end={
               isFetching
@@ -61,10 +61,10 @@ export default function GlobalData() {
             }
             duration={2.5}
             separator=","
-          ></CountUp>
-          {/* {globalData &&
+          ></CountUp> */}
+          {globalData &&
             globalData.results &&
-            globalData.results[0].total_cases} */}
+            globalData.results[0].total_cases}
         </h2>
       </Paper>
       <Paper
