@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GlobalData() {
+export default function GlobalData({ countryCode }) {
   const classes = useStyles();
   // setData is not using that's why didn't declared here.
   let [isData] = useState(true);
@@ -42,6 +42,8 @@ export default function GlobalData() {
   }, [isData]);
 
   if (isFetching) return <h2>Loading....</h2>;
+  const casesNumber =
+    globalData && globalData.results && globalData.results[0].total_cases;
 
   return (
     <div className={classes.root}>
@@ -53,19 +55,11 @@ export default function GlobalData() {
         <h2>
           {/* <CountUp
             start={0}
-            end={
-              isFetching
-                ? 0
-                : globalData &&
-                  globalData.results &&
-                  globalData.results[0].total_cases
-            }
+            end={casesNumber}
             duration={2.5}
             separator=","
           ></CountUp> */}
-          {globalData &&
-            globalData.results &&
-            globalData.results[0].total_cases}
+          {casesNumber}
         </h2>
       </Paper>
       <Paper

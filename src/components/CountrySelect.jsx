@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { useEffect } from "react";
-import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -20,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CountrySelect() {
   let [countryName, setCountryName] = useState([]);
+  let [isFetching, setFetching] = useState(true);
+  const [open, setOpen] = React.useState(false);
+  const [selectedCountry, setCountry] = useState("");
 
   const countries = countryName?.countryitems?.[0]
     ? Object.keys(countryName?.countryitems?.[0]).map(
@@ -27,7 +28,6 @@ export default function CountrySelect() {
       )
     : [];
 
-  let [isFetching, setFetching] = useState(true);
   useEffect(() => {
     async function apiCall() {
       const response = await fetch(
@@ -42,12 +42,11 @@ export default function CountrySelect() {
   }, []);
 
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
-  const [open, setOpen] = React.useState(false);
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const handleChange = (e) => {
+    setCountry(e.target.value);
   };
+  console.log("your selected country is: ", selectedCountry);
 
   const handleClose = () => {
     setOpen(false);
@@ -71,27 +70,19 @@ export default function CountrySelect() {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={age}
+          value={selectedCountry}
           onChange={handleChange}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {/* <MenuItem value={10}>Ten</MenuItem> */}
+
           {countries?.map((country, ind) => (
-            <MenuItem value={country?.code} key={ind + 1}>
+            <MenuItem value={country.code} key={ind + 1}>
               {country?.title}
             </MenuItem>
           ))}
         </Select>
-        {/* 
-        <ol>
-          {countries?.map((country, ind) => (
-            <li key={ind + 1}>{country?.title}</li>
-          ))}
-        </ol> */}
-
-        <h2>{countryName.countryitems[0][1].title}</h2>
       </FormControl>
     </div>
   );
