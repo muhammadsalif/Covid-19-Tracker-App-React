@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
+import CountryData from "./CountryData";
 const useStyles = makeStyles((theme) => ({
   button: {
     display: "block",
@@ -12,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: "70%",
   },
 }));
 
@@ -21,6 +22,7 @@ export default function CountrySelect() {
   let [isFetching, setFetching] = useState(true);
   const [open, setOpen] = React.useState(false);
   const [selectedCountry, setCountry] = useState("");
+  console.log("seleted country", selectedCountry);
 
   const countries = countryName?.countryitems?.[0]
     ? Object.keys(countryName?.countryitems?.[0]).map(
@@ -34,7 +36,7 @@ export default function CountrySelect() {
         "https://api.thevirustracker.com/free-api?countryTotals=ALL"
       );
       const jsonResponse = await response.json();
-      console.log("Your all country data", jsonResponse);
+      // console.log("Your all country data", jsonResponse);
       setCountryName(jsonResponse);
       setFetching(false);
     }
@@ -46,7 +48,7 @@ export default function CountrySelect() {
   const handleChange = (e) => {
     setCountry(e.target.value);
   };
-  console.log("your selected country is: ", selectedCountry);
+  // console.log("your selected country is: ", selectedCountry);
 
   const handleClose = () => {
     setOpen(false);
@@ -84,6 +86,7 @@ export default function CountrySelect() {
           ))}
         </Select>
       </FormControl>
+      <CountryData code={"US"}></CountryData>
     </div>
   );
 }

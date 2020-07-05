@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GlobalData({ selectedCountry }) {
+export default function CountryData({ code }) {
   const classes = useStyles();
   // setData is not using that's why didn't declared here.
   let [isData] = useState(true);
@@ -30,11 +30,11 @@ export default function GlobalData({ selectedCountry }) {
     async function apiCall() {
       setFetching(true);
       const response = await fetch(
-        "https://api.thevirustracker.com/free-api?global=stats"
+        `https://api.thevirustracker.com/free-api?countryTotal=${code}`
       );
       // console.log("Your Response is :", response);
       const responseJson = await response.json();
-      // console.log("Your response JSON: ", responseJson);
+      console.log("Your response JSON: ", responseJson);
 
       setGlobalData(responseJson);
       setFetching(false);
@@ -44,27 +44,41 @@ export default function GlobalData({ selectedCountry }) {
 
   if (isFetching) return <h2>Loading....</h2>;
   const casesNumber =
-    globalData && globalData.results && globalData.results[0].total_cases;
+    globalData &&
+    globalData.countrydata &&
+    globalData.countrydata[0].total_cases;
 
   return (
     <div className={classes.root}>
+      <Paper
+        elevation={3}
+        style={{ color: "peru", borderBottom: "8px solid peru" }}
+      >
+        <h2>Country Name</h2>
+        <h2>
+          {globalData &&
+            globalData.countrydata &&
+            globalData.countrydata[0].info.title}
+        </h2>
+      </Paper>
       <Paper
         elevation={3}
         style={{ color: "blue", borderBottom: "8px solid blue" }}
       >
         <h2>Total Cases</h2>
         <h2>
-          <NumberFormat
-            value={casesNumber}
-            displayType={"text"}
-            thousandSeparator={true}
-          />
           {/* <CountUp
             start={0}
             end={casesNumber}
             duration={2.5}
             separator=","
           ></CountUp> */}
+
+          <NumberFormat
+            value={casesNumber}
+            displayType={"text"}
+            thousandSeparator={true}
+          />
         </h2>
       </Paper>
       <Paper
@@ -76,8 +90,8 @@ export default function GlobalData({ selectedCountry }) {
           <NumberFormat
             value={
               globalData &&
-              globalData.results &&
-              globalData.results[0].total_active_cases
+              globalData.countrydata &&
+              globalData.countrydata[0].total_active_cases
             }
             displayType={"text"}
             thousandSeparator={true}
@@ -93,8 +107,8 @@ export default function GlobalData({ selectedCountry }) {
           <NumberFormat
             value={
               globalData &&
-              globalData.results &&
-              globalData.results[0].total_recovered
+              globalData.countrydata &&
+              globalData.countrydata[0].total_recovered
             }
             displayType={"text"}
             thousandSeparator={true}
@@ -106,6 +120,7 @@ export default function GlobalData({ selectedCountry }) {
         style={{
           color: "red",
           borderBottom: "8px solid red",
+          // borderTop: "2px solid black",
         }}
       >
         <h2>Fitalities</h2>
@@ -113,8 +128,8 @@ export default function GlobalData({ selectedCountry }) {
           <NumberFormat
             value={
               globalData &&
-              globalData.results &&
-              globalData.results[0].total_deaths
+              globalData.countrydata &&
+              globalData.countrydata[0].total_deaths
             }
             displayType={"text"}
             thousandSeparator={true}
