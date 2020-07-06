@@ -23,12 +23,12 @@ export default function MainGrid() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <Paper className={classes.paper}>
             <GlobalData></GlobalData>
           </Paper>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={7}>
           <Paper className={classes.paper}>
             <CountrySelect></CountrySelect>
           </Paper>

@@ -22,32 +22,34 @@ const useStyles = makeStyles((theme) => ({
 export default function CountryData({ code }) {
   const classes = useStyles();
   // setData is not using that's why didn't declared here.
-  let [isData] = useState(true);
   let [globalData, setGlobalData] = useState(1000);
   let [isFetching, setFetching] = useState(false);
 
   useEffect(() => {
-    async function apiCall() {
-      setFetching(true);
-      const response = await fetch(
-        `https://api.thevirustracker.com/free-api?countryTotal=${code}`
-      );
-      // console.log("Your Response is :", response);
-      const responseJson = await response.json();
-      console.log("Your response JSON: ", responseJson);
+    if (code) {
+      async function apiCall() {
+        setFetching(true);
+        const response = await fetch(
+          `https://api.thevirustracker.com/free-api?countryTotal=${code}`
+        );
+        // console.log("Your Response is :", response);
+        const responseJson = await response.json();
+        console.log("Your response JSON: ", responseJson);
 
-      setGlobalData(responseJson);
-      setFetching(false);
+        setGlobalData(responseJson);
+        setFetching(false);
+      }
+      apiCall();
     }
-    apiCall();
-  }, [isData]);
+  }, [code]);
 
-  if (isFetching) return <h2>Loading....</h2>;
   const casesNumber =
     globalData &&
     globalData.countrydata &&
     globalData.countrydata[0].total_cases;
 
+  if (!code) return null;
+  if (isFetching) return <h2>Loading....</h2>;
   return (
     <div className={classes.root}>
       <Paper

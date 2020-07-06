@@ -7,10 +7,9 @@ import NumberFormat from "react-number-format";
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: 0,
-    // border: "2px solid blue",
-    // backgroundColor: "black",
     display: "flex",
     flexWrap: "wrap",
+    // border: "2px dotted blue",
     "& > *": {
       margin: theme.spacing(1),
       width: "100%",
@@ -22,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 export default function GlobalData({ selectedCountry }) {
   const classes = useStyles();
   // setData is not using that's why didn't declared here.
-  let [isData] = useState(true);
   let [globalData, setGlobalData] = useState(1000);
   let [isFetching, setFetching] = useState(false);
 
@@ -40,12 +38,12 @@ export default function GlobalData({ selectedCountry }) {
       setFetching(false);
     }
     apiCall();
-  }, [isData]);
+  }, []);
 
-  if (isFetching) return <h2>Loading....</h2>;
   const casesNumber =
     globalData && globalData.results && globalData.results[0].total_cases;
 
+  if (isFetching) return <h2>Loading....</h2>;
   return (
     <div className={classes.root}>
       <Paper
