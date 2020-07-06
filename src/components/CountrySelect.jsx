@@ -44,10 +44,6 @@ export default function CountrySelect() {
     : [];
 
   const classes = useStyles();
-  const [state] = React.useState({
-    age: "",
-    name: "hai",
-  });
 
   const handleChange = (e) => {
     setCountry(e.target.value);
