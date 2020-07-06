@@ -9,11 +9,15 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     display: "flex",
     flexWrap: "wrap",
+    margin: "0 auto",
     // border: "2px dotted blue",
     "& > *": {
       margin: theme.spacing(1),
-      width: "100%",
+      width: "23%",
       height: theme.spacing(16),
+    },
+    paper: {
+      margin: "0 auto",
     },
   },
 }));
@@ -32,7 +36,7 @@ export default function GlobalData({ selectedCountry }) {
       );
       // console.log("Your Response is :", response);
       const responseJson = await response.json();
-      // console.log("Your response JSON: ", responseJson);
+      console.log("Your Global response JSON: ", responseJson);
 
       setGlobalData(responseJson);
       setFetching(false);
@@ -47,6 +51,7 @@ export default function GlobalData({ selectedCountry }) {
   return (
     <div className={classes.root}>
       <Paper
+        className={classes.paper}
         elevation={3}
         style={{ color: "blue", borderBottom: "8px solid blue" }}
       >
