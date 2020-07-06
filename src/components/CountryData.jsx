@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-// import CountUp from "react-countup";
-import NumberFormat from "react-number-format";
+import CountUp from "react-countup";
+// import NumberFormat from "react-number-format";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: 0,
-    // border: "2px solid blue",
-    // backgroundColor: "black",
     display: "flex",
     flexWrap: "wrap",
     "& > *": {
@@ -43,10 +41,33 @@ export default function CountryData({ code }) {
     }
   }, [code]);
 
-  const casesNumber =
-    globalData &&
-    globalData.countrydata &&
-    globalData.countrydata[0].total_cases;
+  const countryData = {
+    title:
+      globalData &&
+      globalData.countrydata &&
+      globalData.countrydata[0].info.title,
+    totalCases:
+      globalData &&
+      globalData.countrydata &&
+      globalData.countrydata[0].total_cases,
+    active:
+      globalData &&
+      globalData.countrydata &&
+      globalData.countrydata[0].total_active_cases,
+    recovered:
+      globalData &&
+      globalData.countrydata &&
+      globalData.countrydata[0].total_recovered,
+    fitalities:
+      globalData &&
+      globalData.countrydata &&
+      globalData.countrydata[0].total_deaths,
+  };
+
+  const totalCases = countryData.totalCases ? countryData.totalCases : 0;
+  const totalActive = countryData.active ? countryData.active : 0;
+  const totalRecovered = countryData.recovered ? countryData.recovered : 0;
+  const totalFitalities = countryData.fitalities ? countryData.fitalities : 0;
 
   if (!code) return null;
   if (isFetching) return <h2>Loading....</h2>;
@@ -57,11 +78,7 @@ export default function CountryData({ code }) {
         style={{ color: "peru", borderBottom: "8px solid peru" }}
       >
         <h2>Country Name</h2>
-        <h2>
-          {globalData &&
-            globalData.countrydata &&
-            globalData.countrydata[0].info.title}
-        </h2>
+        <h2>{countryData.title}</h2>
       </Paper>
       <Paper
         elevation={3}
@@ -69,18 +86,18 @@ export default function CountryData({ code }) {
       >
         <h2>Total Cases</h2>
         <h2>
-          {/* <CountUp
+          <CountUp
             start={0}
-            end={casesNumber}
-            duration={2.5}
+            end={totalCases}
+            duration={2}
             separator=","
-          ></CountUp> */}
-
+          ></CountUp>
+          {/* 
           <NumberFormat
             value={casesNumber}
             displayType={"text"}
             thousandSeparator={true}
-          />
+          /> */}
         </h2>
       </Paper>
       <Paper
@@ -89,15 +106,17 @@ export default function CountryData({ code }) {
       >
         <h2>Active</h2>
         <h2>
-          <NumberFormat
-            value={
-              globalData &&
-              globalData.countrydata &&
-              globalData.countrydata[0].total_active_cases
-            }
+          <CountUp
+            start={0}
+            end={totalActive}
+            duration={2}
+            separator=","
+          ></CountUp>
+          {/* <NumberFormat
+            value={totalActive}
             displayType={"text"}
             thousandSeparator={true}
-          />{" "}
+          />{" "} */}
         </h2>
       </Paper>
       <Paper
@@ -106,15 +125,18 @@ export default function CountryData({ code }) {
       >
         <h2>Recovered</h2>
         <h2>
+          <CountUp
+            start={0}
+            end={totalRecovered}
+            duration={2}
+            separator=","
+          ></CountUp>
+          {/* 
           <NumberFormat
-            value={
-              globalData &&
-              globalData.countrydata &&
-              globalData.countrydata[0].total_recovered
-            }
+            value={totalRecovered}
             displayType={"text"}
             thousandSeparator={true}
-          />{" "}
+          />{" "} */}
         </h2>
       </Paper>
       <Paper
@@ -127,15 +149,17 @@ export default function CountryData({ code }) {
       >
         <h2>Fitalities</h2>
         <h2>
-          <NumberFormat
-            value={
-              globalData &&
-              globalData.countrydata &&
-              globalData.countrydata[0].total_deaths
-            }
+          <CountUp
+            start={0}
+            end={totalFitalities}
+            duration={2}
+            separator=","
+          ></CountUp>
+          {/* <NumberFormat
+            value={totalFitalities}
             displayType={"text"}
             thousandSeparator={true}
-          />{" "}
+          />{" "} */}
         </h2>
       </Paper>
     </div>
