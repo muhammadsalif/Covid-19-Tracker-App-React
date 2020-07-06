@@ -63,8 +63,6 @@ export default function CountrySelect() {
         </InputLabel>
         <Select
           native
-          value={state.age}
-          onChange={handleChange}
           label="Age"
           inputProps={{
             name: "age",
