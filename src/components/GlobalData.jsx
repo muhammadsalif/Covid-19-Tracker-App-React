@@ -3,6 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 // import CountUp from "react-countup";
 import NumberFormat from "react-number-format";
+import "fontsource-roboto";
+// import "fontsource-source-code-pro";
+
+// import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     // border: "2px dotted blue",
     "& > *": {
       margin: theme.spacing(1),
-      width: "23%",
+      width: "22%",
       // height: theme.spacing(16),
       height: "8rem",
     },
@@ -23,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "2rem",
     textTransform: "capitalize",
     letterSpacing: "1px",
+    color: "black",
+    fontFamily: "roboto",
+    // fontFamily: "source-code-pro",
   },
   paper: {
     transition: "0.3s linear",
@@ -31,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       cursor: "pointer",
       background: "#90a4ae",
       color: "white",
-      width: "24%",
+      width: "23%",
       height: "8.2rem",
     },
   },
@@ -59,6 +66,17 @@ export default function GlobalData({ selectedCountry }) {
     apiCall();
   }, []);
 
+  // useEffect(() => {
+  //   async function DateCall() {
+  //     const response = await fetch(
+  //       "https://thevirustracker.com/timeline/map-data.json"
+  //     );
+  //     const reponseJson = await response.json();
+  //     console.log("your json response for date:", reponseJson);
+  //   }
+  //   DateCall();
+  // }, []);
+
   const casesNumber =
     globalData && globalData.results && globalData.results[0].total_cases;
 
@@ -66,6 +84,11 @@ export default function GlobalData({ selectedCountry }) {
   return (
     <div>
       <h2 className={classes.heading}>Global Data</h2>
+      {/* There is already an h1 in the page, let's not duplicate it. */}
+      {/* <Typography variant="h1" component="h2">
+        Global Data
+      </Typography> */}
+      {/* <h3>Date:8 july 2020</h3> */}
       <div className={classes.root}>
         <Paper
           elevation={3}
