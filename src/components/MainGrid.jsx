@@ -24,19 +24,30 @@ export default function MainGrid() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={8} style={{ margin: "0 auto" }}>
+        <Grid
+          item
+          xs={12}
+          sm={10}
+          lg={8}
+          style={{ margin: "0 auto", marginTop: "8px" }}
+        >
           <Paper className={classes.paper}>
             <GlobalData></GlobalData>
           </Paper>
         </Grid>
 
-        <Grid item xs={7}>
-          <Paper className={classes.paper}>
+        <Grid item xs={12} sm={10} lg={8} style={{ margin: "0 auto" }}>
+          <Paper className={classes.paper} style={{ margin: "0 auto" }}>
             <CountrySelect></CountrySelect>
           </Paper>
         </Grid>
+
+        <Grid item xs={12} sm={10} lg={8} style={{ margin: "0 auto" }}>
+          <Paper className={classes.paper} style={{ margin: "0 auto" }}>
+            <BarChart></BarChart>
+          </Paper>
+        </Grid>
       </Grid>
-      <BarChart></BarChart>
     </div>
   );
 }

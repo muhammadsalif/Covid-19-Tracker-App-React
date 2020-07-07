@@ -11,8 +11,12 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     "& > *": {
       margin: theme.spacing(1),
-      width: "100%",
-      height: theme.spacing(16),
+      // width: "100%",
+      // height: theme.spacing(16),
+
+      width: "23%",
+      // height: theme.spacing(16),
+      height: "8rem",
     },
   },
 }));
@@ -32,7 +36,7 @@ export default function CountryData({ code }) {
         );
         // console.log("Your Response is :", response);
         const responseJson = await response.json();
-        console.log("Your response JSON: ", responseJson);
+        // console.log("Your response JSON: ", responseJson);
 
         setGlobalData(responseJson);
         setFetching(false);
@@ -73,13 +77,13 @@ export default function CountryData({ code }) {
   if (isFetching) return <h2>Loading....</h2>;
   return (
     <div className={classes.root}>
-      <Paper
+      {/* <Paper
         elevation={3}
         style={{ color: "peru", borderBottom: "8px solid peru" }}
       >
         <h2>Country Name</h2>
         <h2>{countryData.title}</h2>
-      </Paper>
+      </Paper> */}
       <Paper
         elevation={3}
         style={{ color: "blue", borderBottom: "8px solid blue" }}

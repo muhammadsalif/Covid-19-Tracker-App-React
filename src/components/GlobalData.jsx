@@ -8,16 +8,31 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: 0,
     display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     flexWrap: "wrap",
-    margin: "0 auto",
     // border: "2px dotted blue",
     "& > *": {
       margin: theme.spacing(1),
       width: "23%",
-      height: theme.spacing(16),
+      // height: theme.spacing(16),
+      height: "8rem",
     },
-    paper: {
-      margin: "0 auto",
+  },
+  heading: {
+    fontSize: "2rem",
+    textTransform: "capitalize",
+    letterSpacing: "1px",
+  },
+  paper: {
+    transition: "0.3s linear",
+    // border: "2px solid peru",
+    "&:hover": {
+      cursor: "pointer",
+      background: "#90a4ae",
+      color: "white",
+      width: "24%",
+      height: "8.2rem",
     },
   },
 }));
@@ -36,7 +51,7 @@ export default function GlobalData({ selectedCountry }) {
       );
       // console.log("Your Response is :", response);
       const responseJson = await response.json();
-      console.log("Your Global response JSON: ", responseJson);
+      // console.log("Your Global response JSON: ", responseJson);
 
       setGlobalData(responseJson);
       setFetching(false);
@@ -49,81 +64,87 @@ export default function GlobalData({ selectedCountry }) {
 
   if (isFetching) return <h2>Loading....</h2>;
   return (
-    <div className={classes.root}>
-      <Paper
-        className={classes.paper}
-        elevation={3}
-        style={{ color: "blue", borderBottom: "8px solid blue" }}
-      >
-        <h2>Total Cases</h2>
-        <h2>
-          <NumberFormat
-            value={casesNumber}
-            displayType={"text"}
-            thousandSeparator={true}
-          />
-          {/* <CountUp
+    <div>
+      <h2 className={classes.heading}>Global Data</h2>
+      <div className={classes.root}>
+        <Paper
+          elevation={3}
+          style={{ color: "blue", borderBottom: "8px solid blue" }}
+          className={classes.paper}
+        >
+          <h2>Total Cases</h2>
+          <h2>
+            <NumberFormat
+              value={casesNumber}
+              displayType={"text"}
+              thousandSeparator={true}
+            />
+            {/* <CountUp
             start={0}
             end={casesNumber}
             duration={2.5}
             separator=","
           ></CountUp> */}
-        </h2>
-      </Paper>
-      <Paper
-        elevation={3}
-        style={{ color: "gold", borderBottom: "8px solid gold" }}
-      >
-        <h2>Active</h2>
-        <h2>
-          <NumberFormat
-            value={
-              globalData &&
-              globalData.results &&
-              globalData.results[0].total_active_cases
-            }
-            displayType={"text"}
-            thousandSeparator={true}
-          />{" "}
-        </h2>
-      </Paper>
-      <Paper
-        elevation={3}
-        style={{ color: "green", borderBottom: "8px solid green" }}
-      >
-        <h2>Recovered</h2>
-        <h2>
-          <NumberFormat
-            value={
-              globalData &&
-              globalData.results &&
-              globalData.results[0].total_recovered
-            }
-            displayType={"text"}
-            thousandSeparator={true}
-          />{" "}
-        </h2>
-      </Paper>
-      <Paper
-        elevation={3}
-        style={{
-          color: "red",
-          borderBottom: "8px solid red",
-        }}
-      >
-        <h2>Fitalities</h2>
-        <h2>
-          <NumberFormat
-            value={
-              globalData &&
-              globalData.results &&
-              globalData.results[0].total_deaths
-            }
-            displayType={"text"}
-            thousandSeparator={true}
-          />{" "}
-        </h2>
-      </Paper>
+          </h2>
+        </Paper>
+        <Paper
+          elevation={3}
+          style={{ color: "gold", borderBottom: "8px solid gold" }}
+          className={classes.paper}
+        >
+          <h2>Active</h2>
+          <h2>
+            <NumberFormat
+              value={
+                globalData &&
+                globalData.results &&
+                globalData.results[0].total_active_cases
+              }
+              displayType={"text"}
+              thousandSeparator={true}
+            />{" "}
+          </h2>
+        </Paper>
+        <Paper
+          elevation={3}
+          style={{ color: "green", borderBottom: "8px solid green" }}
+          className={classes.paper}
+        >
+          <h2>Recovered</h2>
+          <h2>
+            <NumberFormat
+              value={
+                globalData &&
+                globalData.results &&
+                globalData.results[0].total_recovered
+              }
+              displayType={"text"}
+              thousandSeparator={true}
+            />{" "}
+          </h2>
+        </Paper>
+        <Paper
+          elevation={3}
+          style={{
+            color: "red",
+            borderBottom: "8px solid red",
+          }}
+          className={classes.paper}
+        >
+          <h2>Fitalities</h2>
+          <h2>
+            <NumberFormat
+              value={
+                globalData &&
+                globalData.results &&
+                globalData.results[0].total_deaths
+              }
+              displayType={"text"}
+              thousandSeparator={true}
+            />{" "}
+          </h2>
+        </Paper>
+      </div>
     </div>
   );
 }
