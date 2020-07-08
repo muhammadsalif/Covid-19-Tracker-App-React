@@ -41,7 +41,6 @@ export default function LineChart() {
             pointHoverBorderWidth: 2,
             pointRadius: 5,
             pointHitRadius: 10,
-            fill: "true",
             data: dailyData?.map(({ totalConfirmed }) => totalConfirmed),
           },
           {
