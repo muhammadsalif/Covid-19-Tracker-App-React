@@ -25,7 +25,7 @@ export default function MainGrid() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        {/* <Grid
+        <Grid
           item
           xs={12}
           sm={10}
@@ -41,7 +41,7 @@ export default function MainGrid() {
           <Paper className={classes.paper} style={{ margin: "0 auto" }}>
             <CountrySelect></CountrySelect>
           </Paper>
-        </Grid> */}
+        </Grid>
 
         <Grid item xs={12} sm={10} lg={8} style={{ margin: "0 auto" }}>
           <Paper className={classes.paper} style={{ margin: "0 auto" }}>
