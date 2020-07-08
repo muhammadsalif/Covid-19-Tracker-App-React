@@ -10,4 +10,7 @@ Then start the application:
 
 Here's a look of application:
 
+Global Data with global graph statistics:
 ![](public/globaldata.png)
+
+Coutry wise data with graph statistics:
