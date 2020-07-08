@@ -58,7 +58,7 @@ export default function GlobalData({ selectedCountry }) {
       );
       // console.log("Your Response is :", response);
       const responseJson = await response.json();
-      console.log("Your Global response JSON: ", responseJson);
+      // console.log("Your Global response JSON: ", responseJson);
 
       setGlobalData(responseJson);
       setFetching(false);
