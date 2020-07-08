@@ -18,14 +18,12 @@ const useStyles = makeStyles((theme) => ({
 export default function CountrySelect() {
   let [isFetching, setFetching] = useState(true);
 
-  // const seletedCountryCode= selectedCountry.code? object.keys()
   useEffect(() => {
     async function apiCall() {
       const response = await fetch(
         "https://api.thevirustracker.com/free-api?countryTotals=ALL"
       );
       const jsonResponse = await response.json();
-      console.log("Your all country data", jsonResponse);
       setCountryName(jsonResponse);
       setFetching(false);
     }
@@ -33,9 +31,7 @@ export default function CountrySelect() {
   }, []);
 
   let [countryName, setCountryName] = useState([]);
-  //   const [open, setOpen] = React.useState(false);
   const [selectedCountry, setCountry] = useState("");
-  // console.log("seleted country", selectedCountry);
 
   const countries = countryName?.countryitems?.[0]
     ? Object.keys(countryName?.countryitems?.[0]).map(
@@ -48,7 +44,6 @@ export default function CountrySelect() {
   const handleChange = (e) => {
     setCountry(e.target.value);
   };
-  // console.log("your selected country is: ", selectedCountry);
 
   if (isFetching) return <h2>Loading....</h2>;
   return (

@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import CountUp from "react-countup";
 import BarChart from "../charts/BarChart";
-// import NumberFormat from "react-number-format";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,11 +11,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     "& > *": {
       margin: theme.spacing(1),
-      // width: "100%",
-      // height: theme.spacing(16),
-
       width: "23%",
-      // height: theme.spacing(16),
       height: "8rem",
     },
   },
@@ -24,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CountryData({ code }) {
   const classes = useStyles();
-  // setData is not using that's why didn't declared here.
   let [globalData, setGlobalData] = useState(1000);
   let [isFetching, setFetching] = useState(false);
 
@@ -35,9 +29,7 @@ export default function CountryData({ code }) {
         const response = await fetch(
           `https://api.thevirustracker.com/free-api?countryTotal=${code}`
         );
-        // console.log("Your Response is :", response);
         const responseJson = await response.json();
-        // console.log("Your response JSON: ", responseJson);
 
         setGlobalData(responseJson);
         setFetching(false);
@@ -79,13 +71,6 @@ export default function CountryData({ code }) {
   return (
     <>
       <div className={classes.root}>
-        {/* <Paper
-        elevation={3}
-        style={{ color: "peru", borderBottom: "8px solid peru" }}
-      >
-        <h2>Country Name</h2>
-        <h2>{countryData.title}</h2>
-      </Paper> */}
         <Paper
           elevation={3}
           style={{ color: "blue", borderBottom: "8px solid blue" }}
@@ -98,12 +83,6 @@ export default function CountryData({ code }) {
               duration={2}
               separator=","
             ></CountUp>
-            {/* 
-          <NumberFormat
-            value={casesNumber}
-            displayType={"text"}
-            thousandSeparator={true}
-          /> */}
           </h2>
         </Paper>
         <Paper
@@ -118,11 +97,6 @@ export default function CountryData({ code }) {
               duration={2}
               separator=","
             ></CountUp>
-            {/* <NumberFormat
-            value={totalActive}
-            displayType={"text"}
-            thousandSeparator={true}
-          />{" "} */}
           </h2>
         </Paper>
         <Paper
@@ -137,12 +111,6 @@ export default function CountryData({ code }) {
               duration={2}
               separator=","
             ></CountUp>
-            {/* 
-          <NumberFormat
-            value={totalRecovered}
-            displayType={"text"}
-            thousandSeparator={true}
-          />{" "} */}
           </h2>
         </Paper>
         <Paper
@@ -150,7 +118,6 @@ export default function CountryData({ code }) {
           style={{
             color: "red",
             borderBottom: "8px solid red",
-            // borderTop: "2px solid black",
           }}
         >
           <h2>Fitalities</h2>
@@ -161,11 +128,6 @@ export default function CountryData({ code }) {
               duration={2}
               separator=","
             ></CountUp>
-            {/* <NumberFormat
-            value={totalFitalities}
-            displayType={"text"}
-            thousandSeparator={true}
-          />{" "} */}
           </h2>
         </Paper>
       </div>
