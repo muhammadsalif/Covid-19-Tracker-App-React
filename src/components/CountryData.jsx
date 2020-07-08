@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import CountUp from "react-countup";
+import BarChart from "../charts/BarChart";
 // import NumberFormat from "react-number-format";
 
 const useStyles = makeStyles((theme) => ({
@@ -76,96 +77,104 @@ export default function CountryData({ code }) {
   if (!code) return null;
   if (isFetching) return <h2>Loading....</h2>;
   return (
-    <div className={classes.root}>
-      {/* <Paper
+    <>
+      <div className={classes.root}>
+        {/* <Paper
         elevation={3}
         style={{ color: "peru", borderBottom: "8px solid peru" }}
       >
         <h2>Country Name</h2>
         <h2>{countryData.title}</h2>
       </Paper> */}
-      <Paper
-        elevation={3}
-        style={{ color: "blue", borderBottom: "8px solid blue" }}
-      >
-        <h2>Total Cases</h2>
-        <h2>
-          <CountUp
-            start={0}
-            end={totalCases}
-            duration={2}
-            separator=","
-          ></CountUp>
-          {/* 
+        <Paper
+          elevation={3}
+          style={{ color: "blue", borderBottom: "8px solid blue" }}
+        >
+          <h2>Total Cases</h2>
+          <h2>
+            <CountUp
+              start={0}
+              end={totalCases}
+              duration={2}
+              separator=","
+            ></CountUp>
+            {/* 
           <NumberFormat
             value={casesNumber}
             displayType={"text"}
             thousandSeparator={true}
           /> */}
-        </h2>
-      </Paper>
-      <Paper
-        elevation={3}
-        style={{ color: "gold", borderBottom: "8px solid gold" }}
-      >
-        <h2>Active</h2>
-        <h2>
-          <CountUp
-            start={0}
-            end={totalActive}
-            duration={2}
-            separator=","
-          ></CountUp>
-          {/* <NumberFormat
+          </h2>
+        </Paper>
+        <Paper
+          elevation={3}
+          style={{ color: "gold", borderBottom: "8px solid gold" }}
+        >
+          <h2>Active</h2>
+          <h2>
+            <CountUp
+              start={0}
+              end={totalActive}
+              duration={2}
+              separator=","
+            ></CountUp>
+            {/* <NumberFormat
             value={totalActive}
             displayType={"text"}
             thousandSeparator={true}
           />{" "} */}
-        </h2>
-      </Paper>
-      <Paper
-        elevation={3}
-        style={{ color: "green", borderBottom: "8px solid green" }}
-      >
-        <h2>Recovered</h2>
-        <h2>
-          <CountUp
-            start={0}
-            end={totalRecovered}
-            duration={2}
-            separator=","
-          ></CountUp>
-          {/* 
+          </h2>
+        </Paper>
+        <Paper
+          elevation={3}
+          style={{ color: "green", borderBottom: "8px solid green" }}
+        >
+          <h2>Recovered</h2>
+          <h2>
+            <CountUp
+              start={0}
+              end={totalRecovered}
+              duration={2}
+              separator=","
+            ></CountUp>
+            {/* 
           <NumberFormat
             value={totalRecovered}
             displayType={"text"}
             thousandSeparator={true}
           />{" "} */}
-        </h2>
-      </Paper>
-      <Paper
-        elevation={3}
-        style={{
-          color: "red",
-          borderBottom: "8px solid red",
-          // borderTop: "2px solid black",
-        }}
-      >
-        <h2>Fitalities</h2>
-        <h2>
-          <CountUp
-            start={0}
-            end={totalFitalities}
-            duration={2}
-            separator=","
-          ></CountUp>
-          {/* <NumberFormat
+          </h2>
+        </Paper>
+        <Paper
+          elevation={3}
+          style={{
+            color: "red",
+            borderBottom: "8px solid red",
+            // borderTop: "2px solid black",
+          }}
+        >
+          <h2>Fitalities</h2>
+          <h2>
+            <CountUp
+              start={0}
+              end={totalFitalities}
+              duration={2}
+              separator=","
+            ></CountUp>
+            {/* <NumberFormat
             value={totalFitalities}
             displayType={"text"}
             thousandSeparator={true}
           />{" "} */}
-        </h2>
-      </Paper>
-    </div>
+          </h2>
+        </Paper>
+      </div>
+      <BarChart
+        cases={countryData.totalCases}
+        active={countryData.active}
+        recovered={countryData.recovered}
+        deaths={countryData.fitalities}
+      ></BarChart>
+    </>
   );
 }

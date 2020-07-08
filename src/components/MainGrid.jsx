@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 
 import GlobalData from "./GlobalData";
 import CountrySelect from "./CountrySelect";
-// import BarChart from "../charts/BarChart";
+import BarChart from "../charts/BarChart";
 import LineChart from "../charts/LineChart";
 
 const useStyles = makeStyles((theme) => ({
@@ -45,10 +45,15 @@ export default function MainGrid() {
 
         <Grid item xs={12} sm={10} lg={8} style={{ margin: "0 auto" }}>
           <Paper className={classes.paper} style={{ margin: "0 auto" }}>
-            {/* <BarChart></BarChart> */}
             <LineChart></LineChart>
           </Paper>
         </Grid>
+        {/* 
+        <Grid item xs={12} sm={10} lg={8} style={{ margin: "0 auto" }}>
+          <Paper className={classes.paper} style={{ margin: "0 auto" }}>
+            <BarChart></BarChart>
+          </Paper>
+        </Grid> */}
       </Grid>
     </div>
   );

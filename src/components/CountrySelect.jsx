@@ -5,6 +5,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
 import CountryData from "./CountryData";
+import BarChart from "../charts/BarChart";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -25,7 +26,7 @@ export default function CountrySelect() {
         "https://api.thevirustracker.com/free-api?countryTotals=ALL"
       );
       const jsonResponse = await response.json();
-      // console.log("Your all country data", jsonResponse);
+      console.log("Your all country data", jsonResponse);
       setCountryName(jsonResponse);
       setFetching(false);
     }
