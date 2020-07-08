@@ -5,7 +5,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
 import CountryData from "./CountryData";
-import BarChart from "../charts/BarChart";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
