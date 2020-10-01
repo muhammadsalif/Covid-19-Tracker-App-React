@@ -38,7 +38,7 @@ export default function BarChart({ cases, active, recovered, deaths }) {
           width={100}
           height={150}
           options={{
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
           }}
         />
       </>
